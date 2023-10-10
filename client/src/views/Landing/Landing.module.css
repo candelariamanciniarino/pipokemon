@@ -1,0 +1,16 @@
+.fondo{
+    border: solid yellow;
+  background-image: url('../../../public/img/6776c-clickwallpapers-pokemon-4k-img2-scaled-1.webp');
+  background-repeat: no-repeat;
+  background-size: cover; /* Ajusta el tamaño de la imagen para que cubra toda la pantalla */
+  background-position: center;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}

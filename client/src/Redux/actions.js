@@ -11,7 +11,7 @@ export const PAGINATE = 'PAGINATE'
 export const getPokemos = ()=>{
     return async function(dispatch){
         try{
-         const response = await axios.get('http://localhost:3001/pokemon/')
+         const response = await axios.get(`http://localhost:3001/pokemon`)
         const pokemon = response.data
             dispatch({
                 type:GET_POKEMOS,
@@ -25,11 +25,12 @@ export const getPokemos = ()=>{
 
 export const getTipoPokemon =()=>{
     return async function (dispatch){
-        try{ const response = await axios.get('http://localhost:3001/pokemon/types/')
-        console.log(response);
-        dispatch({
+        try{ 
+            const response = await axios.get('http://localhost:3001/pokemon/types')
+            const allType = response.data
+            return dispatch({
             type:GET_TIPO_POKEMON,
-            payload: response.data
+            payload: allType
         })
 
         }catch(error){

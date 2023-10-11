@@ -1,8 +1,8 @@
 //import { Route } from 'react';
 import { useEffect} from "react";
 import{useDispatch,useSelector} from 'react-redux';
-import{getPokemos, getTipoPokemon,orderPokemon,filterPokemoAction,paginadoPokemon, ordenarPokemonAction}from '../../Redux/actions';
-import CardsConteiner from '../../components/Cards/CardsContainer';
+import{getPokemos, getTipoPokemon,filterPokemoAction,paginadoPokemon, ordenarPokemonAction}from '../../Redux/actions';
+import Cards from "../../components/Cards/Cards";
 
 const Home = () => {
     
@@ -53,7 +53,7 @@ const Home = () => {
         <button name='next' onClick={Paginate}>next</button>
       </div>
       <h1>el mundo de los pokemon</h1>
-      <CardsConteiner cards={pokemonData}/>
+      <Cards cards={pokemonData}/>
 
  </div>
     

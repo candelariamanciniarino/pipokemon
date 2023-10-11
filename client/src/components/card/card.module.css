@@ -1,15 +1,19 @@
-.card {
+.cardCont {
     border: 1px solid ;
     padding: 20px;
     background-color: aqua;
+    margin: 20px;
 }
 
-.img {
-    max-height: 100px;
-    max-width: 100px;
-    margin: 0 auto;
-
+.createCont{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.types{
- color: blueviolet;
+
+.createContForm{
+    display: flex;
+    flex-direction: column;
+    width: 20rem;
 }

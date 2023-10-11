@@ -2,55 +2,28 @@
 const axios = require ('axios')
 const {Type} = require ('../db')
 
+require('dotenv').config();
+const url = `https://pokeapi.co/api/v2/type`;
+
 const getAllTypes = async () => {
-  try {
-    const types = await Type.findAll({
-      attributes: ['name'], // Obtener solo el campo 'Nombre'
+  const response = await axios.get(`${url}`);
+  const typeFromApi = response.data.results;
+
+  for (const type of typeFromApi) {
+    // Uso de await para asegurarse de que la operación se complete antes de continuar
+    await Type.findOrCreate({
+      where: { name: type.name },
     });
-    return types.map((type) => type.name);
-  } catch (error) {
-    throw new Error(error.message);
   }
-};
-const saveTypes = async (types) => {
-  try {
-    // Itera sobre los tipos y crea un registro en la base de datos para cada uno
-    await Promise.all(
-      types.map(async (typeName) => {
-        await Type.create({
-          name: typeName,
-        });
-      })
-    );
-  } catch (error) {
-    throw new Error(error.message);
-  }
+
+  // Después de que todas las operaciones de inserción se completen, obtener los tipos
+  const allTypes = await Type.findAll();
+  return allTypes;
 };
 
-const getTypePokemon = async () => {
-    const typesInDB = await getAllTypes();
+module.exports = getAllTypes;
 
-    if (typesInDB.length === 0) {
-        // Si la base de datos está vacía, obtén los tipos desde la API
-        const response = await axios.get('https://pokeapi.co/api/v2/type');
+module.exports = getAllTypes
 
-        if (response.status === 200) {
-          // Extrae los tipos de la respuesta de la API
-          const types = response.data.results.map((type) => type.name);
 
-          // Guarda los tipos en la base de datos
-          await saveTypes(types); 
 
-          return types;
-        } else {
-          throw new Error('Error al obtener tipos desde la API');
-        }
-      } else {
-        // Si ya tienes tipos en la base de datos, simplemente los devuelvo
-        return typesInDB;
-      }
-}
-
-module.exports = {
-    getTypePokemon
-}

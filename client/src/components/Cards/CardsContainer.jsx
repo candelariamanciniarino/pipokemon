@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './cards.module.css';
-import card from '../card/card';
+import Card from '../card/Card';
 
  const CardsConteiner = ({cards}) => { // toma un argumento "cards" que se espera sea un array de objetos
   return (

@@ -87,7 +87,7 @@ export const  paginadoPokemon = (ordenar) =>{
      try {
         dispatch({
             type:PAGINATE,
-            payload:ORDENAR
+            payload:ordenar
         })
      } catch (error){
 
